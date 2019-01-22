@@ -22,22 +22,35 @@
     <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.2/prop-types.js"></script>
     <script type="text/babel">
       const appElement = document.getElementById('app');
 
-      const helloWorld = <div>Hello world</div>
+      const Animals = (props) => {
+        return (
+          <div>
+            Hi, I am a {props.animalType}
+          </div>
+        )
+      } 
 
-      const element = (
-        <div>
-          {helloWorld}
-          {helloWorld}
-          {helloWorld}
-          {helloWorld}
-        </div>
-      )
+      Animals.propTypes = {
+        animalType: PropTypes.string.isRequired
+      }
 
+      const SayHello = (props) => {
+        return (
+          <div>
+            <Animals animalType={"hamster"} />
+            <Animals animalType={"cow"} />
+            <Animals animalType={"cat"}/>
+          </div>
+        )
+      }
 
-      ReactDOM.render(element, appElement)
+      ReactDOM.render(<SayHello 
+                 
+                        />, appElement)
     </script>
 
   </body>
