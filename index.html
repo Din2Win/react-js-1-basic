@@ -49,19 +49,20 @@
         constructor(props) {
           super(props);
           this.state = {
-            name: "Hamster"
+            name: "Hamster",
+            newName: ""
           }
         }
 
         handleShowName = () => {
           this.setState({
-            name: document.getElementById('nameID').value
+            name: this.state.newName
           })
         }
 
-        handleInput = (event) => {
+        handleInput = () => {
           this.setState({
-            name: event.target.value
+            newName: event.target.value
           })
         }
 
@@ -69,9 +70,9 @@
           return (
             <div>
               <input 
-                name="name" 
+                name="newName" 
                 type="text" 
-                id="nameID"
+                onChange={this.handleInput}
                 />
               <ShowName 
                 name={this.state.name} 
