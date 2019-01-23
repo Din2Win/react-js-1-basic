@@ -27,7 +27,6 @@
       const appElement = document.getElementById('app');
 
       class ShowName extends React.Component {
-
         constructor(props) {
           super(props);
         }
@@ -56,13 +55,24 @@
 
         handleShowName = () => {
           this.setState({
-            name: 'Tiny Hamster'
+            name: document.getElementById('nameID').value
+          })
+        }
+
+        handleInput = (event) => {
+          this.setState({
+            name: event.target.value
           })
         }
 
         render() {
           return (
             <div>
+              <input 
+                name="name" 
+                type="text" 
+                id="nameID"
+                />
               <ShowName 
                 name={this.state.name} 
                 handleShowName={this.handleShowName}
