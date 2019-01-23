@@ -26,58 +26,44 @@
     <script type="text/babel">
       const appElement = document.getElementById('app');
 
-      class ShowName extends React.Component {
-        constructor(props) {
-          super(props);
-        }
-
-        handleClick = () => {
-          this.props.handleShowName()
-        }
-
-        render() {
-          return (
-            <div>
-              Hello, my name is {this.props.name} !
-              <button onClick={this.handleClick} >Click!</button>
-            </div>
-          )
-        }
-      }
-
       class App extends React.Component {
-        constructor(props) {
-          super(props);
-          this.state = {
-            name: "Hamster",
-            newName: ""
-          }
-        }
-
-        handleShowName = () => {
-          this.setState({
-            name: this.state.newName
-          })
-        }
-
-        handleInput = () => {
-          this.setState({
-            newName: event.target.value
-          })
+       
+        state = {
+          list: [
+            {
+              id: 1,
+              food: "taco"
+            },
+            {
+              id: 2,
+              food: "burger"
+            },
+            {
+              id: 3,
+              food: "fries"
+            }
+          ]
         }
 
         render() {
+
+          let listItem = this.state.list.map((element, index) => {
+                  return (
+                    <div key={element.id}>
+                      {element.food}  
+                    </div>
+                  )
+                })
+
           return (
             <div>
-              <input 
-                name="newName" 
-                type="text" 
-                onChange={this.handleInput}
-                />
-              <ShowName 
-                name={this.state.name} 
-                handleShowName={this.handleShowName}
-              />
+              {listItem}
+              <br />
+              <form>
+                <input />
+                <br />
+                <button>Add</button>
+              </form>
             </div>
           )
         }
