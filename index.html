@@ -43,7 +43,8 @@
               food: "fries"
             }
           ],
-          food: ''
+          food: '',
+          isToggle: false
         }
 
         handleInput = (event) => {
@@ -68,6 +69,11 @@
           this.myFormRef.reset();
         }
 
+        handleToggle = () => {
+          this.setState({
+            isToggle: !this.state.isToggle
+          })
+        }
         render() {
 
           let listItem = this.state.list.map((element, index) => {
@@ -78,20 +84,32 @@
                   )
                 })
 
+          let data;
+          if (this.state.isToggle) {
+              data = (
+              <div>
+                {listItem}
+                <br />
+                <form onSubmit={this.handleSubmit} ref={(el) => this.myFormRef = el}>
+                  <input 
+                    type="text"
+                    name="food"
+                    onChange={this.handleInput}
+                    />
+                  <br />
+                  <button>Add</button>
+                </form>
+                </div>
+            )   
+          }  else {
+            data = 'CLICK THE BUTTON'
+          }    
+
+                
           return (
             <div>
-              {listItem}
-              <br />
-              <form onSubmit={this.handleSubmit} ref={(el) => this.myFormRef = el}>
-                <input 
-                  type="text"
-                  name="food"
-                  onChange={this.handleInput}
-                  />
-                <br />
-                <button>Add</button>
-              </form>
-              <button>Show me</button>
+              {data}
+              <button onClick={this.handleToggle}>Show me</button>
             </div>
           )
         }
