@@ -65,6 +65,7 @@
           this.setState({
             list: updatedList
           })
+          this.myFormRef.reset();
         }
 
         render() {
@@ -81,7 +82,7 @@
             <div>
               {listItem}
               <br />
-              <form onSubmit={this.handleSubmit}>
+              <form onSubmit={this.handleSubmit} ref={(el) => this.myFormRef = el}>
                 <input 
                   type="text"
                   name="food"
@@ -90,6 +91,7 @@
                 <br />
                 <button>Add</button>
               </form>
+              <button>Show me</button>
             </div>
           )
         }
