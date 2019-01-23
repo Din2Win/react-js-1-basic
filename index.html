@@ -27,10 +27,20 @@
       const appElement = document.getElementById('app');
 
       class ShowName extends React.Component {
+
+        constructor(props) {
+          super(props);
+        }
+
+        handleClick = () => {
+          this.props.handleShowName()
+        }
+
         render() {
           return (
             <div>
               Hello, my name is {this.props.name} !
+              <button onClick={this.handleClick} >Click!</button>
             </div>
           )
         }
@@ -43,10 +53,20 @@
             name: "Hamster"
           }
         }
+
+        handleShowName = () => {
+          this.setState({
+            name: 'Tiny Hamster'
+          })
+        }
+
         render() {
           return (
             <div>
-              <ShowName name={this.state.name} />
+              <ShowName 
+                name={this.state.name} 
+                handleShowName={this.handleShowName}
+              />
             </div>
           )
         }
